@@ -1,0 +1,290 @@
+{% extends 'layout_Reg.html' %}
+{% block title %} register {% endblock%}
+
+{% block style %}
+]
+<style>
+    #nav button{
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
+        font-size: 1em;
+        font: bolder;
+        position: relative;
+        float: right;
+    }
+
+    .bg-primary{
+  background: blue;
+  width: 100px;
+}
+
+/* style for staff reg form*/
+
+</style>
+{% endblock %}
+{% block body %}
+    <div class="container p-3">
+        <div class="register-wrapper text-justify bg-warning m-4 p-1 mb-3 ">
+            <div class="nav-buttons text-center" id="nav">
+                <button id="studentsBtn" class="active btn btn-default bg-primary">Students</button>
+                <button id="staffBtn" class="btn btn-default">Staff</button>
+            </div>
+            <div class="msg bg-primary text-justify text-white">
+                {{msg}}
+            </div>
+
+            <div class="form-group">
+              <h2 class="text-white text-center mt-3 p-1 mb-5" id="form-heading"></h2>
+                <!--students form-->
+                <form action="{{url_for('students')}}" method="POST" id="students_form" class="reg students">
+                        <div class="form-row mb-4">
+                                <div class="col">
+                                  <!-- First name -->
+                                  <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name" name="firstName">
+                                </div>
+                                <div class="col">
+                                  <!-- Last name -->
+                                  <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name" name="lastName">
+                                </div>
+                              </div>
+
+                              <div class="form-row mb-4">
+                                <div class="col">
+                                    <!-- E-mail -->
+                              <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4 col" placeholder="E-mail" name="Email">
+    
+                                </div>
+                                <div class="col">
+                                  <!--Username-->
+                                    <input type="text" name="username" id="username" class="form-control mb-4 col" placeholder="Username">
+                              </div>
+
+                              </div>
+
+                              <div class="form-row mb-4">
+                                <div class="col">
+                                          <!-- Password -->
+                                      <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock" name="password">
+                                      <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                                        At least 8 characters and 1 digit
+                                      </small>
+                                </div>
+
+                                <div class="col">
+                                  <!--Confirm Password-->
+                                  <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="confirm password">
+                                </div>
+                              </div>
+
+                              <div class="form-row mb-4">
+                                <div class="col">
+                                      <!-- Phone number -->
+                                  <input type="text" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock" name="phone">
+                                  <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+                                    Optional - for two step authentication
+                                  </small>
+                    
+                                </div>
+                                      
+
+                                <div class="col">
+                                    <select name="dpt_id"  id="" class="custom-select custom-select-sm mb-4">
+                                      <option value="disable">Please choose department: </option>
+                                        {% for row in departments %}
+                                           
+                                        
+                                              <option value="{{ row[0]}}"> {{ row[1] }} </option>
+                                           
+    
+                                      {% endfor%}
+                                      
+                                     </select>
+
+                                </div>
+                              </div>
+                    
+                             
+                              
+                    
+                             
+                         
+                              <!-- Sign up button -->
+                              <button class="btn btn-info my-4 btn-block waves-effect waves-light" type="submit">Sign Up</button>
+                    
+                              <!-- Social register -->
+                              <p>or sign up with:</p>
+                    
+                              <a type="button" class="light-blue-text mx-2">
+                                <i class="fab fa-facebook-f"></i>
+                              </a>
+                              <a type="button" class="light-blue-text mx-2">
+                                <i class="fab fa-twitter"></i>
+                              </a>
+                              <a type="button" class="light-blue-text mx-2">
+                                <i class="fab fa-linkedin-in"></i>
+                              </a>
+                              <a type="button" class="light-blue-text mx-2">
+                                <i class="fab fa-github"></i>
+                              </a>
+
+            
+          
+                </form>
+
+                <!--Staff  form-->
+                <form action="/staff" method="POST" id="staff_form" class="reg"> 
+                  
+                        <div class="form-group row">
+                            <label for="firstname" class="col-md-4 col-form-label text-md-right font-weight-bold">First Name</label>
+                            <div class="col-md-6">
+                                <input type="text" id="firstName" class="form-control" name="firstName">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="lastName" class="col-md-4 col-form-label text-md-right font-weight-bold">Last Name</label>
+                            <div class="col-md-6">
+                                <input type="text" id="user_name" class="form-control" name="lastName">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="email_address" class="col-md-4 col-form-label text-md-right font-weight-bold">E-Mail Address</label>
+                            <div class="col-md-6">
+                                <input type="text" id="email_address" class="form-control" name="Email">
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <label for="username" class="col-md-4 col-form-label text-md-right font-weight-bold">Username</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="username">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="phone_number" class="col-md-4 col-form-label text-md-right font-weight-bold">Phone Number</label>
+                            <div class="col-md-6">
+                                <input type="text" id="phone" class="form-control" name="phone">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right font-weight-bold">Password</label>
+                            <div class="col-md-6">
+                                <input type="password" id="present_address" class="form-control" name="password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="confirm_password" class="col-md-4 col-form-label text-md-right font-weight-bold">Confirm Password</label>
+                            <div class="col-md-6">
+                                <input type="password" id="confirm_password" class="form-control" name="confirm_password">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="lastName" class="col-md-4 col-form-label text-md-right font-weight-bold">Department</label>
+                            <div class="col-md-6">
+                               
+                                  <select name="dpt_id"  id="" class="custom-select custom-select-sm mb-4">
+                                        <option value="disabled">Please select departments</option>
+                                    {% for row in departments %}
+                                       
+                                    
+                                          <option value="{{ row[0]}}"> {{ row[1] }} </option>
+                                       
+
+                                  {% endfor%}
+                                  
+                                 </select>
+                              
+                         </div>
+                        </div>
+
+                      
+
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                Register
+                                </button>
+                            </div>
+                        </div>
+                        
+                        
+                </form>
+
+                
+                <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body mx-3">
+                      <div class="md-form mb-5">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="defaultForm-email" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+                      </div>
+              
+                      <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" id="defaultForm-pass" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                      </div>
+              
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                      <button class="btn btn-default">Login</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+        
+            
+        
+                   
+            </div>
+            <div id="forget-panel"></div>
+               
+        </div>
+    </div>
+    
+    
+
+
+    <script>
+     //alert(732646);
+        
+         // Grab dom elements from html layout 
+        var studentsForm=document.getElementById("students_form");
+        var staffForm=document.getElementById("staff_form");
+        var studentsBtn=document.getElementById("studentsBtn");
+        var staffBtn=document.getElementById("staffBtn");
+        var forgot= document.getElementById("forgot-panel");
+        //Registration button is clicked
+        studentsBtn.onclick=function() { 
+            $("#staff_form").hide(2000);
+            //Change css properties
+            document.querySelector("#form-heading").innerHTML = 'Students Registration Form';
+           
+            $("#students_form").show(2000);             
+            }
+         //login button is clicked
+        staffBtn.onclick=function() {
+            $("#students_form").hide(2000);
+            document.querySelector("#form-heading").innerHTML = 'Staff Registration Form';
+         
+            $("#staff_form").show(2000);   
+
+        }
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends 'layout_dashboard.html' %}
+
+{% block title %} admin dashboard {% endblock%}
+
+{% block body%}
+<style>
+
+</style>
+<div class="fluid-container row">
+  <!-- Modal to add new department-->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header text-center">
+         
+          <h4 class="modal-title">Add New Department</h4>
+        </div>
+
+
+        <div class="modal-body">
+          <form action="/addDepartment" method="POST">
+            <div class="">
+              <div class="form-group ">
+                <label for="department">Department</label>
+                  <input type="text" name="department" id="">
+
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn btn-default btn-block btn-primary">Submit</button>
+              </div>
+              
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+    <section class="col-2">
+      <div class="top_to_nav">
+
+      </div>
+      <div class="sidenav mt-5 p-2">
+        <div class="row container">
+          <img src="../static/images/admin1.png" id="avator" class="img-fluid" alt="" srcset="">
+        </div>
+        <button type="button" class="btn btn-info m-1 btn-block" data-toggle="modal" data-target="#myModal">ADD DEPARTMENT</button>
+       <a href="logout" class="btn btn-info btn-block m-1">Logout</a>
+      </div>
+
+
+
+    </section>
+    <section class="col-10 text-center">
+            <div class=" jumbotron p-1">
+                    <h1 class="font-weight-bold bg-waring">{{ username }}</h1>
+             </div>
+
+             <div  class="bg-warning">
+                
+               
+
+                <div class="border border-top-1 p-2">
+                    <h2 class="text-white bg-warning">COLLEGE FEEDBACK</h2>
+                 <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">By</th>
+                            <th scope="col">Average</th>
+                            <th scope="col">Dept</th>
+                            <th scope="col">Canteen</th>
+                            <th scope="col">Syllabus</th>
+                            <th scope="col">Labs</th>
+                            <th scope="col">Library</th>
+                            <th scope="col">Students-Staff</th>
+                            <th scope="col">Hostels</th>
+                            <th scope="col">Classrooms</th>
+                            <th scope="col">Comments</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            </tr>
+                            {% for row in data %}
+                                <tr>
+                                {% for d in row %}
+                                    <td>{{ d }}</td>
+                                {% endfor %}
+                                </tr>
+                            {% endfor %}
+                            </tr>
+                        </tbody>
+                      </table>
+
+                </div>
+
+                <div class=" p-2 mt-1">
+                    <h2 class="text-white bg-warning">STAFF FEEDBACK</h2>
+                    <table class="table">
+                           <thead class="thead-dark">
+                             <tr>
+                               <th scope="col">staff Member</th>
+                               <th scope="col">By</th>
+                               <th scope="col">avg</th>
+                               <th scope="col">Material</th>
+                               <th scope="col">Test</th>
+                               <th scope="col">Attendance</th>
+                               <th scope="col">Teaching Methods</th>
+                               <th scope="col">Comments</th>
+                             </tr>
+                           </thead>
+                           <tbody>
+                               </tr>
+                               {% for row in staff_data %}
+                                   <tr>
+                                   {% for d in row %}
+                                       <td>{{ d }}</td>
+                                   {% endfor %}
+                                   </tr>
+                               {% endfor %}
+                               </tr>
+                           </tbody>
+                         </table>
+                </div>
+                      
+     
+
+
+
+                    
+             </div>
+
+    </section>
+</div>
+
+{% endblock%}

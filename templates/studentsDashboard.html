@@ -1,0 +1,633 @@
+{% extends 'layout_dashboard.html'%}
+
+{% block title %} students Dashboard {% endblock %}
+
+{% block body %}
+
+<style>
+    .rating {
+  display: inline-block;
+  position: relative;
+  height: 50px;
+  line-height: 50px;
+  font-size: 50px;
+}
+
+.rating label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  cursor: pointer;
+}
+
+.rating label:last-child {
+  position: static;
+}
+
+.rating label:nth-child(1) {
+  z-index: 5;
+}
+
+.rating label:nth-child(2) {
+  z-index: 4;
+}
+
+.rating label:nth-child(3) {
+  z-index: 3;
+}
+
+.rating label:nth-child(4) {
+  z-index: 2;
+}
+
+.rating label:nth-child(5) {
+  z-index: 1;
+}
+
+.rating label input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rating label .icon {
+  float: left;
+  color: transparent;
+}
+
+.rating label:last-child .icon {
+  color: #000;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+  color: yellow;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+  color: #000;
+  text-shadow: 0 0 5px yellow;
+}
+</style>
+<div class="fluid-container row text-center ml-2 pl-1">
+    <section class="col-2 bg-warning sticky ">
+      <div class="top-to-nav">
+        <img src="" alt="">
+
+      </div>
+      <div class="sidenav">
+          
+          <br>
+          <br>
+          <br><br>
+          <a href="logout" class="btn btn-info btn-block m-1">Logout</a>
+      </div>
+
+      <div class="mt-4">
+        <h4 class="text-white m-1 font-weight-bold" style="font-size: 1em; font-family: arial;">Terms and Conditions</h4>
+        <p class="text-center" style="font-size: 1em">
+          - Do not use explicit words and text in comments
+        </p>
+
+
+      </div>
+    
+    </section>
+    <section class="col-9 ml-3 float-right">
+        <h2 class="jumbotron text-center p-1 m-1">{{username}}</h2>
+        <h6 class="warning">{{user}}</h6>
+        <div class="form-container">
+            <form action="/studentsSubmit" method="post" class="">
+                <div class="header row text-center">
+                    <h3 class=" m-1 p-1"> Feedback on staff</h3>
+                </div>
+
+                <div class="form-group row">
+                    <template>
+                        <div>
+                            <b-form-rating v-model = "value"></b-form-rating>
+                            <p class="mt-2">Value : {{value}}</p>
+                        </div>
+                    </template>
+
+                   
+                </div>
+
+                <div class="form-group row mt-4">
+                        <label for="attendance" class="col-md-4 col-form-label text-md-right font-weight-bold">Enter Lecturers name</label>
+                        <div class="col-md-6">
+                              <input type="text" name="fullname" id="">
+                           </div>
+                </div>
+
+
+                <div class="form-group row">
+                        <label for="courseMaterial" class="col-md-4 col-form-label text-md-right font-weight-bold">Course Material</label>
+                        <div class="col-md-6">
+                          <div class="rating">
+                              <label>
+                                <input type="radio" name="ratingCourse" value="1" />
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingCourse" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingCourse" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>   
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingCourse" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingCourse" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </div> 
+                          </div>
+                </div>
+
+                <div class="form-group row">
+                        <label for="attendance" class="col-md-4 col-form-label text-md-right font-weight-bold">Attendance</label>
+                        <div class="col-md-6">
+                          <div class="rating">
+                              <label>
+                                <input type="radio" name="ratingAttendance" value="1" />
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingAttendance" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingAttendance" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>   
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingAttendance" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingAttendance" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </div> 
+                          </div>
+                </div>
+
+                <div class="form-group row">
+                        <label for="teaching" class="col-md-4 col-form-label text-md-right font-weight-bold">Teaching Methods</label>
+                        <div class="col-md-6">
+                          <div class="rating">
+                              <label>
+                                <input type="radio" name="ratingTeaching" value="1" />
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingTeaching" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingTeaching" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>   
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingTeaching" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingTeaching" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </div> 
+                          </div>
+                </div>
+
+                
+                <div class="form-group row">
+                        <label for="test" class="col-md-4 col-form-label text-md-right font-weight-bold">Test and mocky exam</label>
+                        <div class="col-md-6">
+                          <div class="rating">
+                              <label>
+                                <input type="radio" name="ratingTest" value="1" />
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingTest" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingTest" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>   
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingTest" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingTest" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </div> 
+                          </div>
+                </div>
+
+                <div class="form-group row">
+                        <label for="comment" class="col-md-4 col-form-label text-md-right font-weight-bold">Comment:</label>
+                        <div class="col-md-6">
+                            <textarea name="staff_comment" id="" cols="50" rows="10">Type your comment here</textarea>
+                           
+                        </div>
+                </div>
+
+                <div class="form-group row text-center">
+                    <h1 class="font-weight-bold text-center">Feedback on College</h1>
+                </div>
+
+                
+                <div class="form-group row mt-4">
+                        <label for="canteen" class="col-md-4 col-form-label text-md-right font-weight-bold">Canteen</label>
+                        <div class="col-md-6">
+                          <div class="rating">
+                              <label>
+                                <input type="radio" name="ratingCanteen" value="1" />
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingCanteen" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingCanteen" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>   
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingCanteen" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingCanteen" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </div> 
+                          </div>
+                </div>
+
+                <div class="form-group row mt-4">
+                        <label for="Department" class="col-md-4 col-form-label text-md-right font-weight-bold">Department</label>
+                        <div class="col-md-6">
+                          <div class="rating">
+                              <label>
+                                <input type="radio" name="ratingDepartment" value="1" />
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingDepartment" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingDepartment" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>   
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingDepartment" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingDepartment" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </div> 
+                          </div>
+                </div>
+
+                <div class="form-group row mt-4">
+                        <label for="syallbus" class="col-md-4 col-form-label text-md-right font-weight-bold">Syllabus Content</label>
+                        <div class="col-md-6">
+                          <div class="rating">
+                              <label>
+                                <input type="radio" name="ratingSyllabus" value="1" />
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingSyllabus" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingSyllabus" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>   
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingSyllabus" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingSyllabus" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </div> 
+                          </div>
+                </div>
+
+                <div class="form-group row mt-4">
+                        <label for="lab" class="col-md-4 col-form-label text-md-right font-weight-bold">Laboritory </label>
+                        <div class="col-md-6">
+                          <div class="rating">
+                              <label>
+                                <input type="radio" name="ratingLabs" value="1" />
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingLabs" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingLabs" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>   
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingLabs" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingLabs" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </div> 
+                          </div>
+                </div>
+
+                <div class="form-group row mt-4">
+                        <label for="studStaff" class="col-md-4 col-form-label text-md-right font-weight-bold">Students Staff relationship</label>
+                        <div class="col-md-6">
+                          <div class="rating">
+                              <label>
+                                <input type="radio" name="ratingStudStaff" value="1" />
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingStudStaff" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingStudStaff" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>   
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingStudStaff" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingStudStaff" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </div> 
+                          </div>
+                </div>
+
+                <div class="form-group row mt-4">
+                        <label for="Classrooms" class="col-md-4 col-form-label text-md-right font-weight-bold">Classrooms</label>
+                        <div class="col-md-6">
+                          <div class="rating">
+                              <label>
+                                <input type="radio" name="ratingClass" value="1" />
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingClass" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingClass" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>   
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingClass" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingClass" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </div> 
+                          </div>
+                </div>
+
+                <div class="form-group row mt-4">
+                        <label for="library" class="col-md-4 col-form-label text-md-right font-weight-bold">Library</label>
+                          <div class="col-md-6">    
+                            <div class="rating">
+                                <label>
+                                  <input type="radio" name="ratingLibs" value="1" />
+                                  <span class="icon">★</span>
+                                </label>
+                                <label>
+                                  <input type="radio" name="ratingLibs" value="2" />
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                </label>
+                                <label>
+                                  <input type="radio" name="ratingLibs" value="3" />
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>   
+                                </label>
+                                <label>
+                                  <input type="radio" name="ratingLibs" value="4" />
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                </label>
+                                <label>
+                                  <input type="radio" name="ratingLibs" value="5" />
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                  <span class="icon">★</span>
+                                </label>
+                              </div> 
+                         </div>
+                      </div>
+                </div>
+
+                <div class="form-group row mt-4">
+                        <label for="Hostels" class="col-md-4 col-form-label text-md-right font-weight-bold">Hostels</label>
+                        <div class="col-md-6">
+                            <div class="rating">
+                              <label>
+                                <input type="radio" name="ratingHostels" value="1" />
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingHostels" value="2" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingHostels" value="3" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>   
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingHostels" value="4" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                              <label>
+                                <input type="radio" name="ratingHostels" value="5" />
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                                <span class="icon">★</span>
+                              </label>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="form-group row">
+                        <label for="comment" class="col-md-4 col-form-label text-md-right font-weight-bold">Comment:</label>
+                        <div class="col-md-6">
+                            <textarea name="college_comment" id="" cols="50" rows="10">Type your comment here</textarea>
+                           
+                        </div>
+                </div>    
+                <button type="submit" class="btn btn-block bg-primary">Submit</button>           
+                 </div>
+
+               
+
+                
+                <br>
+                <br>
+                <br>
+                <br>
+
+
+
+
+
+
+            </form>
+        </div>
+    </section>
+</div>
+
+<script>
+  $(':radio').change(function() {
+  console.log('New star rating: ' + this.value);
+});
+   
+
+</script>
+
+{% endblock %}

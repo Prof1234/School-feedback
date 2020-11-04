@@ -1,0 +1,50 @@
+
+
+feedbacks by students
+departmental feedback
+staff feedback
+canteen
+
+
+staff
+performance
+canteen
+
+department qns
+
+
+staff feedback
+
+is the lecture attending lectures and ontime
+is he giving test and assignments
+
+CREATE TABLE staff_feedbacks(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    fullName VARCHAR(60),
+    avg_rating float,
+    send_by varchar(60),
+    course_material int,
+    test int,
+    class_attendance int,
+    teaching int
+    
+);
+
+CREATE TABLE feedbacks(
+    sendBy VARCHAR(60) PRIMARY KEY,
+    department int,
+    avg_rating float,
+    canteen int,
+    syllabus_content int,
+    lab int,
+    studStaff int,
+    libary int,
+    classrooms int,
+    library int,
+    hostels int
+    
+
+);
+
+
+submitting the form only once
