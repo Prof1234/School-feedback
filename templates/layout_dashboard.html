@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}  {% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.min.css')}} ">
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap/css/bootstrap.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='fontawesome/css/all.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='site.css')}}">
+    <link rel="stylesheet" href= "{{url_for('static', filename= 'node_modules/dist/css/tabulator.min.css')}} ">
+    <link href="https://unpkg.com/tabulator-tables@4.1.4/dist/css/tabulator.min.css" rel="stylesheet">
+
+
+</head>
+<body>
+
+    {% block body %}
+
+    {% endblock %}
+
+
+
+
+        <script src="{{url_for('static', filename='bootstrap/jquery/jquery.min.js')}}"></script>
+        <script src="{{url_for('static', filename='bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{url_for('static', filename= 'bootstrap/jquery/jquery.dataTables.min.js')}} "></script>
+        <script src="{{url_for('static', filename= 'bootstrap/jquery/dataTables.bootstrap4.min.js')}}"></script>
+        {% block script%}
+        
+        {%endblock%}
+      
+    
+</body>
+</html>

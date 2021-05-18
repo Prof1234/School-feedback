@@ -1,0 +1,150 @@
+{% extends 'layout_Reg.html' %}
+{% block title %} register {% endblock%}
+
+{% block style %}
+]
+<style>
+    #nav button{
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
+        font-size: 1em;
+        font: bolder;
+        position: relative;
+        float: right;
+    }
+
+    .bg-primary{
+  background: blue;
+  width: 100px;
+}
+
+/* style for staff reg form*/
+
+</style>
+{% endblock %}
+{% block body %}
+    <div class="container p-3">
+        <div class="register-wrapper text-justify bg-warning m-4 p-1 mb-3 ">
+           
+            <div class="msg bg-primary text-justify text-white">
+                {{msg}}
+            </div>
+
+            <div class="form-group">
+              <h2 class="text-white text-center mt-3 p-1 mb-5" id="form-heading"> Students Registration Form</h2>
+                <!--students form-->
+                <form action="/students" method="POST" id="students_form" class="reg"> 
+                  
+                  <div class="form-group row">
+                      <label for="firstname" class="col-md-4 col-form-label text-md-right font-weight-bold">First Name</label>
+                      <div class="col-md-6">
+                          <input type="text" id="firstName" class="form-control" name="firstName" required="required" >
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label for="lastName" class="col-md-4 col-form-label text-md-right font-weight-bold">Last Name</label>
+                      <div class="col-md-6">
+                          <input type="text" id="user_name" class="form-control" name="lastName" required="required" >
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label for="email_address" class="col-md-4 col-form-label text-md-right font-weight-bold">E-Mail Address</label>
+                      <div class="col-md-6">
+                          <input type="email" id="email_address" class="form-control" name="Email" required="required" >
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="username" class="col-md-4 col-form-label text-md-right font-weight-bold">Username</label>
+                      <div class="col-md-6">
+                          <input type="text" class="form-control" name="username" required="required" placeholder="username" >
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label for="phone_number" class="col-md-4 col-form-label text-md-right font-weight-bold">Phone Number</label>
+                      <div class="col-md-6">
+                          <input type="text" id="phone" class="form-control" name="phone" required="required" >
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label for="password" class="col-md-4 col-form-label text-md-right font-weight-bold">Password</label>
+                      <div class="col-md-6">
+                          <input type="password" id="present_address" class="form-control" name="password" required="required" >
+                      </div>
+                  </div>
+
+                  <div class="form-group row">
+                      <label for="confirm_password" class="col-md-4 col-form-label text-md-right font-weight-bold">Confirm Password</label>
+                      <div class="col-md-6">
+                          <input type="password" id="confirm_password" class="form-control" name="confirmPassword" required="required" >
+                      </div>
+                  </div>
+
+           
+
+                
+
+                      <div class="col-md-6 offset-md-4">
+                          <button type="submit" class="btn btn-primary">
+                          Register
+                          </button>
+                      </div>
+                  </div>
+                  
+                  
+          </form>
+
+                <!--Staff  form-->
+           
+                
+                <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header text-center">
+                      <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body mx-3">
+                      <div class="md-form mb-5">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <input type="email" id="defaultForm-email" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="defaultForm-email">Your email</label>
+                      </div>
+              
+                      <div class="md-form mb-4">
+                        <i class="fas fa-lock prefix grey-text"></i>
+                        <input type="password" id="defaultForm-pass" class="form-control validate">
+                        <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
+                      </div>
+              
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                      <button class="btn btn-default">Login</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+        
+            
+        
+                   
+            </div>
+            <div id="forget-panel"></div>
+               
+        </div>
+    </div>
+    
+    
+
+
+ <script>
+ </script>
+{% endblock %}

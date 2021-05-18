@@ -1,0 +1,77 @@
+DROP DATABASE college;
+
+CREATE DATABASE college;
+
+CREATE TABLE college.faculty(
+    course varchar(60) UNIQUE,
+    dpt_id int PRIMARY KEY AUTO_INCREMENT
+);
+
+CREATE TABLE college.students(
+    firstName VARCHAR(30),
+    lastName VARCHAR(30),
+    Email VARCHAR(60) PRIMARY KEY,
+    phone VARCHAR(14) NOT null
+);
+
+
+CREATE TABLE college.staff(
+    firstName VARCHAR(30),
+    lastName VARCHAR(30),
+    Email VARCHAR(60) PRIMARY KEY,
+    phone VARCHAR(14) NOT null ,
+    dpt_id INT,
+    FOREIGN KEY(dpt_id) REFERENCES faculty(dpt_id)
+);
+
+CREATE TABLE college.users(
+    Email VARCHAR(100) UNIQUE,
+    username VARCHAR(20) PRIMARY KEY,
+    user_pwd varchar (100) NOT NULL,
+    isStudent boolean
+
+);
+
+INSERT INTO college.users(username, Email, user_pwd) VALUES('admin','admin@admin.com', 'admin');
+
+CREATE TABLE college.staff_feedback(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    Email VARCHAR(100) not null,  
+    sendBY VARCHAR(100) not null, 
+    avg_rating float,
+    explanation int,
+    opinions int,
+    labs int,
+    presentation int,
+    friendly int,
+    management int,
+    comments text,
+    dateSend date
+    
+     
+);
+
+CREATE TABLE college.modules(
+    id int PRIMARY KEY AUTO_INCREMENT,
+    dpt_id int,
+    sendBY VARCHAR(100),
+    avg_rating float,
+    tutorials int,
+    links int,
+    skills int,
+    consult int,
+    content int,
+    materials int,
+    outlines int,
+    comments text,
+    dateSend DATE,
+    FOREIGN KEY(dpt_id) REFERENCES faculty(dpt_id)
+);
+
+
+
+INSERT INTO faculty(course,dpt_id)
+VALUES ('Engineering Mathematics', 1);
+
+
+
